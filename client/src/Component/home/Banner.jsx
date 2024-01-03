@@ -5,9 +5,9 @@ import { styled } from "@mui/material";
 
 const Image = styled('img')({
 
-    width: "205vh",
+    width: "100%",
     height: "100%",
-    margin: "1.5vh 6vh 0 2vh",
+    margin: "1vh 0px 0px 0vh",
     opacity: "90%"
 
 })
