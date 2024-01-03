@@ -8,7 +8,7 @@ const Connection = async (username,passoword)=>{
        await mongoose.connect(URL)
        console.log("DataBase Connected");
     }catch(error){
-        console.log("error",error.massage)
+        console.log("failed to Connect DataBase",error.massage)
     }
 }
 export default Connection;

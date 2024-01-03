@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect,useContext} from 'react';
 import { Dialog, DialogContent, TextField, Box, Button, Typography, styled } from '@mui/material';
-
 import { authenticateLogin, authenticateSignup } from '../../service/api.js';
+import {DataContext} from '../../context/ContextProvider.jsx';
+
 
 const Component = styled(DialogContent)`
     height: 80vh;
@@ -102,19 +102,21 @@ const accountInitialValues = {
     }
 }
 
-export const LoginDialog = ({ open, setopen, setAccount }) => {
+export const LoginDialog = ({ open, setopen}) => {
 
     const [ login, setLogin ] = useState(loginInitialValues);
     const [ signup, setSignup ] = useState(signupInitialValues);
     const [ error, showError] = useState(false);
     const [ account, toggleAccount ] = useState(accountInitialValues.login);
+    const {setAccount}=useContext(DataContext); 
 
     useEffect(() => {
+
         showError(false);
     }, [login])
 
     const onValueChange = (e) => {
-        setLogin({ ...login, [e.target.name]: e.target.value });
+        setLogin({ ...login, [e.target.name]: e.target.value }); //[e.target.name] use value As a key []
     }
 
     const onInputChange = (e) => {
@@ -161,14 +163,18 @@ export const LoginDialog = ({ open, setopen, setAccount }) => {
                         <Wrapper>
                             <TextField variant="standard" onChange={(e) => onValueChange(e)} name='username' label='Enter Email/Mobile number' />
                             { error && <Error>Please enter valid Email ID</Error> }
+
                             <TextField variant="standard" onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
+
                             <LoginButton onClick={() => loginUser()} >Login</LoginButton>
+
                             <Text style={{textAlign:'center'}}>OR</Text>
                             <RequestOTP>Request OTP</RequestOTP>
+
                             <CreateAccount onClick={() => toggleSignup()}>New to Flipkart? Create an account</CreateAccount>
                         </Wrapper> : 
-                        <Wrapper>
+                        <Wrapper>  
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='firstname' label='Enter Firstname' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='username' label='Enter Username' />
