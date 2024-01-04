@@ -12,6 +12,18 @@ const Logout = styled(Typography)`
     margin-top:10px;
 `;
 
+const Theme = styled(Box)`
+    background: rgb(34 179 255);
+    margin-top: -10px;
+    cursor: pointer;
+    padding: 9px;
+    border-radius: 5px;
+    margin-right: 20PX;
+    margin-left: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+`;
+
 const Profile = ({ account, setAccount }) => {
     const [open, setopen] = useState(false);
     
@@ -30,8 +42,8 @@ const Profile = ({ account, setAccount }) => {
     return (
         <>
             <Box onClick={handleClick}>
-
-                <Typography style={{ marginTop:-10,cursor:'pointer',padding:22}}>{account}</Typography></Box>
+                <Theme>{account}</Theme>
+            </Box>
             <Component anchorEl={open} open={Boolean(open)}onClose={handleClose}>
 
                 <MenuItem onClick={() => { handleClose(); logout();}}>
