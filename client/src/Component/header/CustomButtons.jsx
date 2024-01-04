@@ -6,6 +6,7 @@ import { useState ,useContext} from 'react';
 import {DataContext} from '../../context/ContextProvider'
 import Profile from './Profile.jsx'
 
+
 const Wrapper = styled(Box)`
   display:flex;
   margin:0 -7% 0 auto;

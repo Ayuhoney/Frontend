@@ -2,6 +2,8 @@ import React, { useState, useEffect,useContext} from 'react';
 import { Dialog, DialogContent, TextField, Box, Button, Typography, styled } from '@mui/material';
 import { authenticateLogin, authenticateSignup } from '../../service/api.js';
 import {DataContext} from '../../context/ContextProvider.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Component = styled(DialogContent)`
@@ -122,17 +124,23 @@ export const LoginDialog = ({ open, setopen}) => {
     const onInputChange = (e) => {
         setSignup({ ...signup, [e.target.name]: e.target.value });
     }
-
+    
+    const notify = () => toast("Wow so easy!");
     const loginUser = async() => {
+
         let response = await authenticateLogin(login);
-        if(!response) 
-            showError(true);
-        else {
+        if(!response) {
+            showError(true);   
+            toast.error('Login Failed!')
+        }
+        else{
+            
             showError(false);
             handleClose();
             setAccount(login.username);
         }
     }
+
 
     const signupUser = async() => {
         let response = await authenticateSignup(signup);
@@ -150,6 +158,7 @@ export const LoginDialog = ({ open, setopen}) => {
         toggleAccount(accountInitialValues.login);
     }
 
+    
     return (
         <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { maxWidth: 'unset' } }}>
             <Component>
@@ -159,21 +168,26 @@ export const LoginDialog = ({ open, setopen}) => {
                         <Typography style={{marginTop: 20}}>{account.subHeading}</Typography>
                     </Image>
                     {
+                         
                         account.view === 'login' ? 
                         <Wrapper>
                             <TextField variant="standard" onChange={(e) => onValueChange(e)} name='username' label='Enter Email/Mobile number' />
                             { error && <Error>Please enter valid Email ID</Error> }
 
                             <TextField variant="standard" onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
+                
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
 
-                            <LoginButton onClick={() => loginUser()} >Login</LoginButton>
+                            <LoginButton on onClick={event => {loginUser()}} >Login</LoginButton>
+                            <ToastContainer />
+                            
 
                             <Text style={{textAlign:'center'}}>OR</Text>
                             <RequestOTP>Request OTP</RequestOTP>
 
                             <CreateAccount onClick={() => toggleSignup()}>New to Flipkart? Create an account</CreateAccount>
                         </Wrapper> : 
+
                         <Wrapper>  
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='firstname' label='Enter Firstname' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
@@ -186,6 +200,8 @@ export const LoginDialog = ({ open, setopen}) => {
                     }
                 </Box>
             </Component>
+            
         </Dialog>
+        
     )
 }
