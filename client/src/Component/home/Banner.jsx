@@ -2,15 +2,20 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { bannerData } from "../../constents/data";
 import { styled } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
-const Image = styled('img')({
+const Image = styled('img')(({ theme }) => ({  //make resposive using meterial UI
 
     width: "100%",
     height: "100%",
     margin: "1vh 0px 0px 0vh",
-    opacity: "90%"
+    opacity: `90%`,
+    [theme.breakpoints.down('md')]: {
+        objectFit: 'cover',
+        height: 180
+    }
+}));
 
-})
 const responsive = {
     desktop: {
         breakpoint: { max: 4000, min: 1024 },

@@ -9,7 +9,7 @@ const Component = styled(DialogContent)`
     width: 105vh;
     padding: 0;
     padding-top: 0;
-    ovrerflow:unset
+    ovrerflow:hidden;
 `;
 
 const LoginButton = styled(Button)`
