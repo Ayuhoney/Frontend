@@ -17,6 +17,7 @@ const ColumnText = styled(TableRow)`
     & > td {
         font-size: 14px;
         margin-top: 10px;
+        border:none;
     }
 `
 
@@ -63,7 +64,7 @@ const ProductDetail = ({ product }) => {
                         </TableCell>
                     </TableRow>
                     <ColumnText>
-                        <TableCell style={{ color: '#878787' }}>Description</TableCell>
+                        <TableCell style={{ color: '#878787',width:10 }}>Description</TableCell>
                         <TableCell>{product.description}</TableCell>
                     </ColumnText>
                 </TableBody>

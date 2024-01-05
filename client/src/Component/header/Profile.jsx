@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Typography, Menu, MenuItem, Box, styled } from '@mui/material';
 import { PowerSettingsNew } from '@mui/icons-material';
 
+
+
 const Component = styled(Menu)`
     margin-top: 5px;
 `;
@@ -14,14 +16,16 @@ const Logout = styled(Typography)`
 
 const Theme = styled(Box)`
     background: rgb(34 179 255);
-    margin-top: -10px;
+    margin-top: -9px;
     cursor: pointer;
     padding: 9px;
     border-radius: 5px;
-    margin-right: 20PX;
-    margin-left: 14px;
+    margin-right: -15px;
+    margin-left: 5px;
     font-weight: 500;
     margin-bottom: 4px;
+    width:70px;
+    text-align:center;
 `;
 
 const Profile = ({ account, setAccount }) => {
@@ -38,12 +42,14 @@ const Profile = ({ account, setAccount }) => {
     const logout = () => {
         setAccount('');
     }
-    
+
     return (
         <>
             <Box onClick={handleClick}>
-                <Theme>{account}</Theme>
+                <Theme >{account}</Theme>
             </Box>
+
+
             <Component anchorEl={open} open={Boolean(open)}onClose={handleClose}>
 
                 <MenuItem onClick={() => { handleClose(); logout();}}>

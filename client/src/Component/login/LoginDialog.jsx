@@ -113,7 +113,6 @@ export const LoginDialog = ({ open, setopen}) => {
     const {setAccount}=useContext(DataContext); 
 
     useEffect(() => {
-
         showError(false);
     }, [login])
 
@@ -124,8 +123,7 @@ export const LoginDialog = ({ open, setopen}) => {
     const onInputChange = (e) => {
         setSignup({ ...signup, [e.target.name]: e.target.value });
     }
-    
-    const notify = () => toast("Wow so easy!");
+
     const loginUser = async() => {
 
         let response = await authenticateLogin(login);
@@ -158,7 +156,6 @@ export const LoginDialog = ({ open, setopen}) => {
         toggleAccount(accountInitialValues.login);
     }
 
-    
     return (
         <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { maxWidth: 'unset' } }}>
             <Component>

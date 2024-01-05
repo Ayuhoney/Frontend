@@ -23,11 +23,11 @@ const Container = styled(Grid)(({ theme }) => ({
 
 const RightContainer = styled(Grid)`
      
-     margin-top: 27px;
+     margin-top: 17px;
     
     & > p {
         margin-top: 10px;
-        margin-left:auto;
+        margin:20px;
     }
 `;
 

@@ -6,33 +6,35 @@ import { useState ,useContext} from 'react';
 import {DataContext} from '../../context/ContextProvider'
 import Profile from './Profile.jsx'
 
-
-const Wrapper = styled(Box)`
-  display:flex;
-  margin:0 -7% 0 auto;
-  align-items: center;
+const Wrapper = styled(Box)(({ theme }) => ({
   
+  display:'flex',
+  margin:'0 3% 0 auto',
+  
+  '& > *':{
+    marginRight:40,
+    fontSize:16,
+    alignIteams:'center'
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'block'
+}
+}));
 
-  & > p{
-
-    margin-bottom: 13px;
-    margin-left: 0px;
-    display:flex;
+const Container = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  [theme.breakpoints.down('md')]: {
+      display: 'block'
   }
-`;
-const Container = styled(Box)`
-  display:flex;
-  margin-top:-2%;
-  margin-left: 10px;
-`;
+}));
 
 const LoginButton = styled(Button)`   
 
       margin: auto;
-      margin-bottom: 13px;
-      margin-left: 9px;
-      font-weight:600
-      display:flex;
+      margin-bottom: 12px;
+      margin-left: 19px;
+      font-weight:600;
+      margin-right:30px;
 `;
 
 export const CustomButtons = () => {
@@ -56,7 +58,7 @@ export const CustomButtons = () => {
       
       <Container>
           <ShoppingCartIcon/>
-          <Typography>Cart</Typography>
+          <Typography style={{fontWeight:600}}>Cart</Typography>
       </Container> 
       <LoginDialog open={open} setopen={setopen}/>
     </Wrapper>
