@@ -1,6 +1,6 @@
-//import { payUsingPaytm } from '../../service/api';
-//import { post } from '../../utils/paytm';
-//import { addToCart } from '../../redux/actions/cartActions';
+// import { payUsingPaytm } from '../../service/api';
+// import { post } from '../../utils/paytm';
+import { addToCart } from '../../redux/actions/cartActions';
 import { ShoppingCart as Cart, FlashOn as Flash } from '@mui/icons-material';
 
 import { useState } from 'react';
@@ -56,17 +56,17 @@ const ActionItem = ({ product }) => {
     //     post(information);
     // }
 
-    // const addItemToCart = () => {
-    //     dispatch(addToCart(id, quantity));
-    //     navigate('/cart');
-    // }
+    const addItemToCart = () => {
+        dispatch(addToCart(id, quantity));
+        navigate('/cart');
+    }
 
     return (
         <LeftContainer>
             <Box style={{ }}>
                 <Image src={product.detailUrl} /><br />
             </Box>
-            <StyledButton  style={{marginRight:59,background: '#ff9f00'}} variant="contained"><Cart />Add to Cart</StyledButton>
+            <StyledButton onClick={() => addItemToCart()} style={{marginRight:59,background: '#ff9f00'}} variant="contained"><Cart />Add to Cart</StyledButton>
             <StyledButton  style={{background: '#fb641b'}} variant="contained"><Flash /> Buy Now</StyledButton>
         </LeftContainer>
     )

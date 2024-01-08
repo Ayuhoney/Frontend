@@ -1,10 +1,14 @@
-import { Box,Typography,styled} from '@mui/material';
+import { Badge, Box,Typography,styled} from '@mui/material';
 import Button from '@mui/material/Button';
+import * as React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { LoginDialog } from '../login/LoginDialog';
 import { useState ,useContext} from 'react';
 import {DataContext} from '../../context/ContextProvider'
 import Profile from './Profile.jsx'
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const Wrapper = styled(Box)(({ theme }) => ({
   
@@ -21,11 +25,24 @@ const Wrapper = styled(Box)(({ theme }) => ({
 }
 }));
 
-const Container = styled(Box)(({ theme }) => ({
+const Container = styled(Link)(({ theme }) => ({
   display: 'flex',
+  marginTop:'4px',
+  textDecoration:'none',
+  color:'inherit',
   [theme.breakpoints.down('md')]: {
       display: 'block'
   }
+}));
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 4,
+    left:7,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
 }));
 
 const LoginButton = styled(Button)`   
@@ -42,9 +59,13 @@ export const CustomButtons = () => {
   const [open,setopen] = useState(false);
   const {account,setAccount} = useContext(DataContext);
 
+  const cartDetails = useSelector(state => state.cart);
+  const { cartItems } = cartDetails;
+
   const openDialog = () => {
       setopen(true);
   }
+
   return (
 
      <Wrapper>
@@ -56,9 +77,10 @@ export const CustomButtons = () => {
       <Typography style={{marginTop:3,width:152,fontWeight:600}}>Become a Seller</Typography>
       <Typography style={{marginTop:3,fontWeight:600,width:66}}>More</Typography>
       
-      <Container>
+      <Container to="/cart">
+        <StyledBadge badgeContent={cartItems?.length}color='secondary'>
           <ShoppingCartIcon/>
-          <Typography style={{fontWeight:600}}>Cart</Typography>
+        </StyledBadge>
       </Container> 
       <LoginDialog open={open} setopen={setopen}/>
     </Wrapper>

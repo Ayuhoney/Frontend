@@ -113,6 +113,7 @@ export const LoginDialog = ({ open, setopen}) => {
     const {setAccount}=useContext(DataContext); 
 
     useEffect(() => {
+
         showError(false);
     }, [login])
 
@@ -123,16 +124,16 @@ export const LoginDialog = ({ open, setopen}) => {
     const onInputChange = (e) => {
         setSignup({ ...signup, [e.target.name]: e.target.value });
     }
-
+    
     const loginUser = async() => {
 
         let response = await authenticateLogin(login);
+
         if(!response) {
             showError(true);   
             toast.error('Login Failed!')
         }
         else{
-            
             showError(false);
             handleClose();
             setAccount(login.username);
@@ -180,7 +181,7 @@ export const LoginDialog = ({ open, setopen}) => {
                             
 
                             <Text style={{textAlign:'center'}}>OR</Text>
-                            <RequestOTP>Request OTP</RequestOTP>
+                            <RequestOTP>Forgot Password</RequestOTP>
 
                             <CreateAccount onClick={() => toggleSignup()}>New to Flipkart? Create an account</CreateAccount>
                         </Wrapper> : 

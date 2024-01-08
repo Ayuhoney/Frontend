@@ -73,7 +73,8 @@
               .map((product) => (
                 <ListItem>
 
-                  <Link to={`/product/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}
+                  <Link to={`/product/${product.id}`} 
+                  style={{ textDecoration: "none", color: "inherit" }}
                   onClick={() => setOpen(true)}>
                     { product.title.longTitle }
                     

@@ -5,11 +5,10 @@ import { Box,styled } from "@mui/material"
 import {getProducts} from '../../redux/actions/productActions'
 import { useEffect } from "react";
 import { useDispatch ,useSelector } from "react-redux";
-
 import {Slide} from './Slide.jsx'
 import {MidSlide} from './MidSlide.jsx'
-
 import MidSection from './MidSection.jsx';
+
 
 const Component = styled(Box)(({ theme }) => ({
 
@@ -45,9 +44,7 @@ export const Home = () => {
         <Slide products={products} title="Top Selection" timer={false}/>
         <Slide products={products} title="Recommended Items" timer={false}/>
         <Slide products={products} title="Session's Top picks" timer={true}/>
-        <Slide products={products} title="Top Deals on Accessories" timer={false}/>          
-        
-          
+        <Slide products={products} title="Top Deals on Accessories" timer={false}/>  
       </Component>
       
     </>
