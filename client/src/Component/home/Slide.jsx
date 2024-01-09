@@ -5,6 +5,7 @@ import { Button, Divider, Box, Typography, styled } from '@mui/material';
 import Countdown from 'react-countdown';
 import { Link } from 'react-router-dom';
 
+
 const responsive = {
     desktop: {
         breakpoint: { max: 4000, min: 1024 },
@@ -74,6 +75,10 @@ const Image = styled('img')({
     width: 'auto',
     height: 150
 })
+const Links = styled(Link)({
+    textDecoration:'none',
+    marginLeft:'auto'
+})
 
 const Text = styled(Typography)`
     font-size: 14px;
@@ -83,7 +88,7 @@ const Text = styled(Typography)`
 
 export const Slide = ({products,title,timer}) => {
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
-    
+     
     const renderer = ({ hours, minutes, seconds }) => {
         return <RenderTimer variant="span">{hours} : {minutes} : {seconds}  Left</RenderTimer>;
     };
@@ -105,7 +110,12 @@ export const Slide = ({products,title,timer}) => {
                         </Times>
                     </Timer>
                 }
+                
+                <Links to={`product/product2`}>
                 <ViewAllButton variant="contained" color="primary">View All</ViewAllButton>
+                </Links>
+
+
             </Deal>
             <Divider/>
             

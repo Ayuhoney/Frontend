@@ -192,7 +192,7 @@ export const LoginDialog = ({ open, setopen}) => {
                 
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
 
-                            <LoginButton on onClick={event => {loginUser()}} >Login</LoginButton>
+                            <LoginButton variant="contained" onClick={event => {loginUser()}} >Login</LoginButton>
                             <ToastContainer />
                             
 
@@ -209,7 +209,7 @@ export const LoginDialog = ({ open, setopen}) => {
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='email' label='Enter Email' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' />
-                            <LoginButton onClick={() => signupUser()} >Continue</LoginButton>
+                            <LoginButton variant="contained" onClick={() => signupUser()} >Continue</LoginButton>
                            
                         </Wrapper>
                     }
