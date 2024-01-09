@@ -1,5 +1,5 @@
 
-import { Typography, Box, styled } from '@mui/material';
+import { Button,Typography, Box, styled } from '@mui/material';
 
 const Component = styled(Box)`
     width: 80%%;
@@ -26,7 +26,7 @@ const EmptyCart = () => {
             <Container>
                 <Image src={imgurl} />
                 <Typography>Your cart is empty!</Typography>
-                <Typography component="span">Add items to it now.</Typography>
+                <Button component="span">Add items to it now.</Button>
             </Container>
         </Component>
     )

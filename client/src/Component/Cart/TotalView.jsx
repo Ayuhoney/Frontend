@@ -3,17 +3,21 @@ import { Box, Typography, styled } from '@mui/material';
 
 const Header = styled(Box)`
     padding: 15px 24px;
-    background: #fff;
-    borderBottom: 1px solid #f0f0f0;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 1px solid #f0f0f0;
 `;
 
 const Heading = styled(Typography)`
-    color: #878787;
+    color: black;
+    font-weight:600 
 `;
 
 const Container = styled(Box)`
     padding: 15px 24px;
     background: #fff;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 2px solid #f0f0f0;
+
     & > p {
         margin-bottom: 20px;
         font-size: 14px;

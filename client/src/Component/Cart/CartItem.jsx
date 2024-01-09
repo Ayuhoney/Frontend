@@ -7,10 +7,12 @@ import { addEllipsis } from '../../utils/util';
 import GroupButton from './GroupButton';
 
 const Component = styled(Card)`
-    border-top: 1px solid #f0f0f0;
+
     border-radius: 0px;
     display: flex;
     padding:10px;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 2px solid #f0f0f0;
 `;
 
 const LeftComponent = styled(Box)`

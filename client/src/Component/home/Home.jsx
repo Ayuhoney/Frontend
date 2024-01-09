@@ -8,6 +8,7 @@ import { useDispatch ,useSelector } from "react-redux";
 import {Slide} from './Slide.jsx'
 import {MidSlide} from './MidSlide.jsx'
 import MidSection from './MidSection.jsx';
+import Footer from './Footer';
 
 
 const Component = styled(Box)(({ theme }) => ({
@@ -46,6 +47,7 @@ export const Home = () => {
         <Slide products={products} title="Session's Top picks" timer={true}/>
         <Slide products={products} title="Top Deals on Accessories" timer={false}/>  
       </Component>
+      <Footer/>
       
     </>
   )

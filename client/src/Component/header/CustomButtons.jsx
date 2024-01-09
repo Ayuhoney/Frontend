@@ -75,7 +75,7 @@ export const CustomButtons = () => {
       }
 
       <Typography style={{marginTop:3,width:152,fontWeight:600}}>Become a Seller</Typography>
-      <Typography style={{marginTop:3,fontWeight:600,width:66}}>More</Typography>
+      <Typography  style={{marginTop:3,fontWeight:600,width:66}}>More</Typography> 
       
       <Container to="/cart">
         <StyledBadge badgeContent={cartItems?.length}color='secondary'>

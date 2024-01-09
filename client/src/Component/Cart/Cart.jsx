@@ -29,15 +29,18 @@ const LeftComponent = styled(Grid)(({ theme }) => ({
 }));
 
 const Header = styled(Box)`
-    padding: 15px 24px;
-    background: #fff;
+    padding: 10px 24px;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 1px solid #f0f0f0;
+
 `;
 
 const BottomWrapper = styled(Box)`
     padding: 16px 22px;
     background: #fff;
-    box-shadow: 0 -2px 10px 0 rgb(0 0 0 / 10%);
-    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 3px solid #f0f0f0;
+
 `;
 
 const StyledButton = styled(Button)`

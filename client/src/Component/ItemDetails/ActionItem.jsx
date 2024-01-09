@@ -8,6 +8,7 @@ import {Button,Box,styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+
 const LeftContainer = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '40px 0 0 80px',
@@ -18,7 +19,8 @@ const LeftContainer = styled(Box)(({ theme }) => ({
 
 const Image = styled('img')({
     padding:'30px',
-    border: '1px solid #f0f0f0',
+    border: '0px solid #f0f0f0',
+    boxShadow:'0px 1px 2px 3px rgb(0 123 0 / 10%)',
     width: '90%',
     marginLeft: '-16%'
 });
@@ -64,7 +66,7 @@ const ActionItem = ({ product }) => {
     return (
         <LeftContainer>
             <Box style={{ }}>
-                <Image src={product.detailUrl} /><br />
+                <Image src={product.detailUrl}  /><br />
             </Box>
             <StyledButton onClick={() => addItemToCart()} style={{marginRight:59,background: '#ff9f00'}} variant="contained"><Cart />Add to Cart</StyledButton>
             <StyledButton  style={{background: '#fb641b'}} variant="contained"><Flash /> Buy Now</StyledButton>
