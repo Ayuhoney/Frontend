@@ -11,7 +11,7 @@ import EmptyCart from './EmptyCart';
 import CartItem from './CartItem';
 
 //import {post} from '../../utils/paytm';
-import { payUsingPaytm } from '../../service/api';
+//import { payUsingPaytm } from '../../service/api';
 
 const Component = styled(Grid)(({ theme }) => ({
     padding: '30px 135px',
@@ -68,11 +68,11 @@ const Cart = () => {
     }
 
     const buyNow = async () => {
-        let response = await payUsingPaytm({ amount: 500, email: 'ayush2211207@gmail.com'});
-        var information = {
-            action: 'https://securegw-stage.paytm.in/order/process',
-            params: response    
-        }
+        //let response = await payUsingPaytm({ amount: 500, email: 'ayush2211207@gmail.com'});
+        // var information = {
+        //     action: 'https://securegw-stage.paytm.in/order/process',
+        //     params: response    
+        // }
         //post(information);
     }
 
@@ -84,8 +84,8 @@ const Cart = () => {
                     <Header>
                         <Typography style={{fontWeight: 600, fontSize: 18}}>My Cart ({cartItems?.length})</Typography>
                     </Header>
-                        {   cartItems.map(item => (
-                                <CartItem item={item} removeItemFromCart={removeItemFromCart}/>
+                        {   cartItems.map((item,idx) => (
+                                <CartItem  item={item} key={idx} removeItemFromCart={removeItemFromCart}/>
                             ))
                         }
                     <BottomWrapper>

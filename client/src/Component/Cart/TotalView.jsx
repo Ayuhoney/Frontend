@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { Box, Typography, styled } from '@mui/material';
 
 const Header = styled(Box)`
@@ -36,49 +35,55 @@ const TotalAmount = styled(Typography)`
 const Discount = styled(Typography)`
     font-size: 16px; 
     color: green;
-`
+`;
+
+const totalAmount = (cartItems) => {
+    let totalPrice = 0, totalDiscount = 0;
+    
+    cartItems.forEach(item => {
+        totalPrice += item.price.mrp * item.quantity;
+        totalDiscount += (item.price.mrp - item.price.cost) * item.quantity;
+    });
+
+    return { totalPrice, totalDiscount };
+};
 
 const TotalView = ({ cartItems }) => {
-    
     const [price, setPrice] = useState(0);
-    const [discount, setDiscount] = useState(0)
+    const [discount, setDiscount] = useState(0);
 
     useEffect(() => {
-        totalAmount();
-    },[cartItems]);
-    
-    const totalAmount = () => {
-        let price = 0, discount = 0;
-        cartItems.map(item => {
-            price += item.price.mrp
-            discount += (item.price.mrp - item.price.cost) 
-        })
-        setPrice(price);
-        setDiscount(discount);
-    }
+        const { totalPrice, totalDiscount } = totalAmount(cartItems);
+        setPrice(totalPrice);
+        setDiscount(totalDiscount);
+    }, [cartItems]);
 
     return (
-        <Box>  {/* className={classes.component}> */}
+        <Box>
             <Header>
                 <Heading>PRICE DETAILS</Heading>
             </Header>
             <Container>
-                <Typography>Price ({cartItems?.length} item)
+                <Typography>
+                    Price ({cartItems?.length} item)
                     <Price component="span">₹{price}</Price>
                 </Typography>
-                <Typography>Discount
+                <Typography>
+                    Discount
                     <Price component="span">-₹{discount}</Price>
                 </Typography>
-                <Typography>Delivery Charges
+                <Typography>
+                    Delivery Charges
                     <Price component="span">₹40</Price>
                 </Typography>
-                <TotalAmount>Total Amount
+                <TotalAmount>
+                    Total Amount
                     <Price>₹{price - discount + 40}</Price>
                 </TotalAmount>
                 <Discount>You will save ₹{discount - 40} on this order</Discount>
             </Container>
         </Box>
-    )
-}
+    );
+};
 
 export default TotalView;

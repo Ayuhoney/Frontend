@@ -37,7 +37,7 @@ const RightComponent = styled(Box)(({ theme}) => ({
             </LeftComponent>
 
             <RightComponent>
-                <img src={adURL} style={{width: 217}}/>
+                <img src={adURL} style={{width: 217}} alt="img"/>
             </RightComponent>
         </Component>
     )

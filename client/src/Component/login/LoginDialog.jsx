@@ -132,20 +132,36 @@ export const LoginDialog = ({ open, setopen}) => {
         if(!response) {
             showError(true);   
             toast.error('Login Failed!')
+            return;
         }
         else{
             showError(false);
             handleClose();
             setAccount(login.username);
+            toast.error('Login Failed!')
+            return;
+        
         }
     }
 
 
     const signupUser = async() => {
+
         let response = await authenticateSignup(signup);
-        if(!response) return;
-        handleClose();
-        setAccount(signup.username);
+        if(!response){
+           
+            showError(true);   
+            toast.error('Signup Failed!')
+            return ;
+        }
+        else{
+            showError(false);
+            handleClose();
+            setAccount(login.username);
+            toast.success('Signup Successful!'); 
+            return;
+
+        }
     }
     
     const toggleSignup = () => {
@@ -172,7 +188,7 @@ export const LoginDialog = ({ open, setopen}) => {
                             <TextField variant="standard" onChange={(e) => onValueChange(e)} name='username' label='Enter Email/Mobile number' />
                             { error && <Error>Please enter valid Email ID</Error> }
 
-                            <TextField variant="standard" onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
+                            <TextField required variant="standard" onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
                 
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
 
@@ -194,10 +210,12 @@ export const LoginDialog = ({ open, setopen}) => {
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' />
                             <LoginButton onClick={() => signupUser()} >Continue</LoginButton>
+                           
                         </Wrapper>
                     }
                 </Box>
             </Component>
+            <ToastContainer />
             
         </Dialog>
         

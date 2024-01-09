@@ -44,7 +44,7 @@ const ActionItem = ({ product }) => {
 
     const { id } = product;
     const navigate = useNavigate();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity] = useState(1);
     const dispatch = useDispatch();
 
     // const buyNow = async () => {

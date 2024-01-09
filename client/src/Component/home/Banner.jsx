@@ -2,7 +2,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { bannerData } from "../../constents/data";
 import { styled } from "@mui/material";
-import { useTheme } from "@emotion/react";
 
 const Image = styled('img')(({ theme }) => ({  //make resposive using meterial UI
 
