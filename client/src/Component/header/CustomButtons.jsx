@@ -10,6 +10,19 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import DownloadIcon from '@mui/icons-material/Download';
+
+
+
 const Wrapper = styled(Box)(({ theme }) => ({
   
   display:'flex',
@@ -54,7 +67,37 @@ const LoginButton = styled(Button)`
       margin-right:30px;
 `;
 
+
 export const CustomButtons = () => {
+
+  const navs = [
+    {
+        title: "Notification Preferences",
+        icon: <NotificationsIcon sx={{ fontSize: "18px" }} />,
+        redirect: "https://www.flipkart.com/communication-preferences/push",
+    },
+    {
+        title: "Sell on Flipkart",
+        icon: <BusinessCenterIcon sx={{ fontSize: "18px" }} />,
+        redirect: "https://seller.flipkart.com/sell-online",
+    },
+    {
+        title: "24x7 Customer Care",
+        icon: <LiveHelpIcon sx={{ fontSize: "18px" }} />,
+        redirect: "https://www.flipkart.com/helpcentre",
+    },
+    {
+        title: "Advertise",
+        icon: <TrendingUpIcon sx={{ fontSize: "18px" }} />,
+        redirect: "https://advertising.flipkart.com",
+    },
+    {
+        title: "Download App",
+        icon: <DownloadIcon sx={{ fontSize: "18px" }} />,
+        redirect: "https://www.flipkart.com/mobile-apps",
+    },
+]
+
 
   const [open,setopen] = useState(false);
   const {account,setAccount} = useContext(DataContext);
@@ -66,6 +109,16 @@ export const CustomButtons = () => {
       setopen(true);
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const opens = Boolean(anchorEl);
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
 
      <Wrapper>
@@ -73,9 +126,52 @@ export const CustomButtons = () => {
            account ? <Profile account={account} setAccount={setAccount}  /> :
           <LoginButton onClick={()=>openDialog()} variant="contained" style={{width:138,height:32,color:"#2874f0",background:"white",fontWeight:600}}>Login</LoginButton>
       }
+       
+      <Container style={{ fontFamily:'inherit',marginRight:4,marginTop:5,width:152,fontWeight:600}}>Become a Seller</Container>
+   
 
-      <Typography style={{marginTop:3,width:152,fontWeight:600}}>Become a Seller</Typography>
-      <Typography  style={{marginTop:3,fontWeight:600,width:66}}>More</Typography> 
+      <Typography style={{ marginRight: '3%' }}>
+  <Button
+    style={{ marginTop: '-4%', fontWeight: 600, color: 'inherit' }}
+    id="basic-button"
+    aria-controls={opens ? 'basic-menu' : undefined}
+    aria-haspopup="true"
+    aria-expanded={opens ? 'true' : undefined}
+    onMouseEnter={handleClick} 
+  >
+    More {opens ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+  </Button>
+
+  <Menu
+    id="basic-menu"
+    anchorEl={anchorEl}
+    open={opens}
+    onClose={handleClose}
+    MenuListProps={{
+      'aria-labelledby': 'basic-button',
+    }}
+  >
+    {navs.map((item, index) => (
+      <MenuItem
+        key={index}
+        onClick={handleClose}
+        sx={{ display: 'flex', alignItems: 'center', gap: 1, padding: '8px 16px' }}
+      >
+        {item.icon}
+        <Typography variant="body1">{item.title}</Typography>
+      </MenuItem>
+    ))}
+
+    <MenuItem
+      onClick={handleClose}
+      sx={{ display: 'flex', alignItems: 'center', gap: 1, padding: '8px 16px' }}
+    >
+      <Typography variant="body1">My account</Typography>
+    </MenuItem>
+  </Menu>
+</Typography>
+
+  
       
       <Container to="/cart">
         <StyledBadge badgeContent={cartItems?.length}color='secondary'>
@@ -84,5 +180,7 @@ export const CustomButtons = () => {
       </Container> 
       <LoginDialog open={open} setopen={setopen}/>
     </Wrapper>
+
+    
   )
 }

@@ -7,11 +7,12 @@ import DataProvider from "./context/ContextProvider";
 import { Header } from "./Component/header/Header";
 import DetailView from './Component/ItemDetails/DetailView'
 import Cart from './Component/Cart/Cart';
+import Footer from './Component/Footer/Footer.jsx';
 
 
 function App() {
   return (
-
+   <>
     <DataProvider>
       <BrowserRouter>
         <Header />
@@ -24,8 +25,8 @@ function App() {
         </Box>
       </BrowserRouter>
     </DataProvider>
-
-  
+    <Footer/>
+    </>
   );
 }
 
