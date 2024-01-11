@@ -1,4 +1,3 @@
-// GroupButton.js
 
 import React from 'react';
 import { ButtonGroup, Button, styled } from '@mui/material';

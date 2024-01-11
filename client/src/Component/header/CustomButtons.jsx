@@ -20,6 +20,8 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import DownloadIcon from '@mui/icons-material/Download';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 
 
@@ -119,6 +121,14 @@ export const CustomButtons = () => {
     setAnchorEl(null);
   };
 
+  const calculateTotalQuantity = (wishlistItems) => {
+    const quantities = wishlistItems.map(item => item.quantity || 0);
+      const totalQuantity = quantities.reduce((sum, quantity) => sum + quantity, 0);
+  
+    return totalQuantity;
+  };
+  
+
   return (
 
      <Wrapper>
@@ -177,7 +187,14 @@ export const CustomButtons = () => {
         <StyledBadge badgeContent={cartItems?.length}color='secondary'>
           <ShoppingCartIcon/>
         </StyledBadge>
-      </Container> 
+      </Container>
+
+      <Container to="/wishlist">
+        <StyledBadge badgeContent={calculateTotalQuantity(cartItems)}color='secondary'>
+          <AddShoppingCartIcon/>
+        </StyledBadge>
+      </Container>  
+
       <LoginDialog open={open} setopen={setopen}/>
     </Wrapper>
 

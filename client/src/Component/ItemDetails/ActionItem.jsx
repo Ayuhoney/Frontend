@@ -2,6 +2,7 @@
 // import { post } from '../../utils/paytm';
 import { addToCart } from '../../redux/actions/cartActions';
 import { ShoppingCart as Cart, FlashOn as Flash } from '@mui/icons-material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { useState } from 'react';
 import {Button,Box,styled } from '@mui/material';
@@ -13,7 +14,7 @@ const LeftContainer = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '40px 0 0 80px',
     [theme.breakpoints.down('md')]: {
-        padding: '20px 40px'
+        padding: '20px 70px'
     }
 }))
 
@@ -39,37 +40,33 @@ const StyledButton = styled(Button)(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
         width:'39%',
     }
-
 }))
 
-const ActionItem = ({ product }) => {
 
-    const { id } = product;
+const ActionItem = ({ product }) => {
+    const {id} = product; // Assuming the product has a property isInWishlist
     const navigate = useNavigate();
     const [quantity] = useState(1);
     const dispatch = useDispatch();
-
-    // const buyNow = async () => {
-    //     let response = await payUsingPaytm({ amount: 500, email: 'codeforinterview01@gmail.com'});
-    //     var information = {
-    //         action: 'https://securegw-stage.paytm.in/order/process',
-    //         params: response    
-    //     }
-    //     post(information);
-    // }
 
     const addItemToCart = () => {
         dispatch(addToCart(id, quantity));
         navigate('/cart');
     }
 
+    const addItemToWishlist = () => {
+        dispatch(addToCart(id, quantity));
+        navigate('/wishlist');
+    }
+
     return (
         <LeftContainer>
-            <Box style={{ }}>
-                <Image src={product.detailUrl}  /><br />
+            <Box style={{ position: 'relative' }}>
+                <Image src={product.detailUrl} alt="Product Image" />
+                <Button style={{ color: 'red', position: 'absolute', top: 10, right: 35 }} onClick={() => addItemToWishlist()} variant="text"><FavoriteIcon/></Button>   
             </Box>
-            <StyledButton onClick={() => addItemToCart()} style={{marginRight:59,background: '#ff9f00'}} variant="contained"><Cart />Add to Cart</StyledButton>
-            <StyledButton  style={{background: '#fb641b'}} variant="contained"><Flash /> Buy Now</StyledButton>
+            <StyledButton onClick={() => addItemToCart()} style={{ marginRight: 59, background: '#ff9f00' }} variant="contained"><Cart />Add to Cart</StyledButton>
+            <StyledButton style={{ background: '#fb641b' }} variant="contained"><Flash /> Buy Now</StyledButton>
         </LeftContainer>
     )
 }

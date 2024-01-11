@@ -8,6 +8,7 @@ import { Header } from "./Component/header/Header";
 import DetailView from './Component/ItemDetails/DetailView'
 import Cart from './Component/Cart/Cart';
 import Footer from './Component/Footer/Footer.jsx';
+import Wishlist from './Component/Wishlist/Wishlist.jsx';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path= '/' element={<Home />} />
               <Route path= '/product/:id' element={<DetailView />} />
               <Route path= '/cart' element={<Cart/>} />
+              <Route path= '/wishlist' element={<Wishlist/>} />
             </Routes>
         </Box>
       </BrowserRouter>

@@ -1,8 +1,6 @@
-// cartConstants.js
-
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const ADD_TO_CART_ERROR = 'ADD_TO_CART_ERROR';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const INCREMENT_QUANTITY = 'INCREMENT_QUANTITY';
 export const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
-
+export const UPDATE_ALL_ITEM_COSTS = 'UPDATE_ALL_ITEM_COSTS'

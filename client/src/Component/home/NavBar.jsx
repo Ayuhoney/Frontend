@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, styled, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { navData } from "../../constents/data";
 
 import Menu from '@mui/material/Menu';
@@ -7,11 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import DownloadIcon from '@mui/icons-material/Download';
 
 const navs = [
   {
