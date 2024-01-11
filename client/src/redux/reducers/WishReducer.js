@@ -25,11 +25,27 @@ export const wishReducer = (state = { wishIteams: [] }, action) => {
                     wishIteams: [...state.wishIteams, temp]
                 };
             }
-        case actionTypes.RemoveWishItem:
-            return {
-                ...state,
-                wishIteams: state.wishIteams.filter(product => product.id !== action.payload)
-            };
+            case actionTypes.RemoveWishItem:
+
+             const indexToRemove = state.wishIteams.findIndex(product => product.id === action.payload);
+
+             if (indexToRemove !== -1) {
+
+               const updatedWishItems = state.wishIteams.map((item, index) =>
+
+               index === indexToRemove
+                ? { ...item, quantity: item.quantity - 1 }
+                : item)
+                .filter(item => item.quantity > 0); 
+                
+        return {
+            ...state,
+            wishIteams: updatedWishItems
+        };
+    } else {
+        return state;
+    }
+            
         default:
             return state;
     }
