@@ -1,10 +1,11 @@
 // import { payUsingPaytm } from '../../service/api';
 // import { post } from '../../utils/paytm';
 import { addToCart } from '../../redux/actions/cartActions';
+import {AddWishItem} from '../../redux/actions/WishActions';
 import { ShoppingCart as Cart, FlashOn as Flash } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import {Button,Box,styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -44,10 +45,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 
 const ActionItem = ({ product }) => {
-    const {id} = product; // Assuming the product has a property isInWishlist
+
+    const { id } = product; // Assuming the product has a property isInWishlist
     const navigate = useNavigate();
     const [quantity] = useState(1);
     const dispatch = useDispatch();
+    const wishlistButtonRef = useRef(null);
 
     const addItemToCart = () => {
         dispatch(addToCart(id, quantity));
@@ -55,20 +58,31 @@ const ActionItem = ({ product }) => {
     }
 
     const addItemToWishlist = () => {
-        dispatch(addToCart(id, quantity));
+        dispatch(AddWishItem(id, quantity));
         navigate('/wishlist');
+        wishlistButtonRef.current.blur();
     }
 
     return (
         <LeftContainer>
             <Box style={{ position: 'relative' }}>
                 <Image src={product.detailUrl} alt="Product Image" />
-                <Button style={{ color: 'red', position: 'absolute', top: 10, right: 35 }} onClick={() => addItemToWishlist()} variant="text"><FavoriteIcon/></Button>   
+                <Button
+                    ref={wishlistButtonRef}
+                    style={{ color: 'red', position: 'absolute', top: 10, right: 35 }}
+                    onClick={() => addItemToWishlist()}
+                    variant="text"
+                >
+                    <FavoriteIcon />
+                </Button>
             </Box>
-            <StyledButton onClick={() => addItemToCart()} style={{ marginRight: 59, background: '#ff9f00' }} variant="contained"><Cart />Add to Cart</StyledButton>
-            <StyledButton style={{ background: '#fb641b' }} variant="contained"><Flash /> Buy Now</StyledButton>
+            <StyledButton onClick={() => addItemToCart()} style={{ marginRight: 59, background: '#ff9f00' }} variant="contained">
+                <Cart /> Add to Cart
+            </StyledButton>
+            <StyledButton style={{ background: '#fb641b' }} variant="contained">
+                <Flash /> Buy Now
+            </StyledButton>
         </LeftContainer>
-    )
+    );
 }
-
 export default ActionItem;

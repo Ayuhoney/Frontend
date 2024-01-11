@@ -8,6 +8,7 @@ import {DataContext} from '../../context/ContextProvider'
 import Profile from './Profile.jsx'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Tooltip from '@mui/material/Tooltip';
 
 
 import Menu from '@mui/material/Menu';
@@ -107,6 +108,9 @@ export const CustomButtons = () => {
   const cartDetails = useSelector(state => state.cart);
   const { cartItems } = cartDetails;
 
+  const wishdetails = useSelector(state => state.wishList);
+  const { wishIteams } = wishdetails;
+
   const openDialog = () => {
       setopen(true);
   }
@@ -147,7 +151,7 @@ export const CustomButtons = () => {
     aria-controls={opens ? 'basic-menu' : undefined}
     aria-haspopup="true"
     aria-expanded={opens ? 'true' : undefined}
-    onMouseEnter={handleClick} 
+    onClick={handleClick} 
   >
     More {opens ? <ExpandLessIcon /> : <ExpandMoreIcon />}
   </Button>
@@ -185,14 +189,20 @@ export const CustomButtons = () => {
       
       <Container to="/cart">
         <StyledBadge badgeContent={cartItems?.length}color='secondary'>
-          <ShoppingCartIcon/>
+          <Tooltip title="Cart">
+            <ShoppingCartIcon/>
+          </Tooltip>
         </StyledBadge>
       </Container>
 
       <Container to="/wishlist">
-        <StyledBadge badgeContent={calculateTotalQuantity(cartItems)}color='secondary'>
+        <StyledBadge badgeContent={calculateTotalQuantity(wishIteams)} color='primary' >
+          
+        <Tooltip title="Wishlist">
           <AddShoppingCartIcon/>
+          </Tooltip>
         </StyledBadge>
+
       </Container>  
 
       <LoginDialog open={open} setopen={setopen}/>

@@ -9,10 +9,11 @@ const Component = styled(Typography)`
 `;
 
 const GroupButton = ({ itemId }) => {
-    const cartDetails = useSelector(state => state.cart);
-    const { cartItems } = cartDetails;
+    
+    const wishdetails = useSelector(state => state.wishList);
+    const { wishIteams } = wishdetails;
 
-    const selectedItem = cartItems.find(item => item.id === itemId);
+    const selectedItem = wishIteams.find(item => item.id === itemId);
 
     return (
         <Component>
