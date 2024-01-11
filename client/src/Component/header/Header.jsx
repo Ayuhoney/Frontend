@@ -58,7 +58,7 @@ export const Header = () => {
   }
   const list = () => (
     
-    <Box style={{ width: 200  }} onClick={handleOpen}>
+    <Box style={{ width: 200,padding:10  }} onClick={handleOpen}>
         <List>
             <ListItem button>
                 <CustomButtons /> 

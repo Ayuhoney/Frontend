@@ -1,7 +1,6 @@
 
 import {Typography, Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
-import cart from '../../assets/images/emptyCart.gif'
 
 const Component = styled(Box)`
     width: 80%%;
@@ -29,18 +28,18 @@ const Additeam = styled(Link)(({ theme }) => ({
     color:'inherit'
   }));
 
-const EmptyCart = () => {
-    const imgurl = cart;
+const EmptyWishlist = () => {
+    const imgurl = 'https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90';
     
     return (
         <Component>
             <Container>
                 <Image src={imgurl} />
-                <Typography>Your cart is empty!</Typography>&nbsp;&nbsp;&nbsp;<br/>
+                <Typography>Your WishList is empty!</Typography>&nbsp;&nbsp;&nbsp;<br/>
                 <Additeam to="/" variant="contained" component="span">Add items to it now.</Additeam>
             </Container>
         </Component>
     )
 }
 
-export default EmptyCart;
+export default EmptyWishlist;

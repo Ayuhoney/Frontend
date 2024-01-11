@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AddWishItem,RemoveWishItem } from "../../redux/actions/WishActions";
 import WishlistIteam from "./WishlistIteam";
+import EmptyWishlist from "./EmptyWishlist";
+
 
 //import {post} from '../../utils/paytm';
 //import { payUsingPaytm } from '../../service/api';
@@ -73,6 +75,10 @@ const Wishlist = () => {
   };
 
   return (
+    
+    <> { 
+      
+    wishIteams.length ? 
     <Component container>
       <LeftComponent item lg={9} md={9} sm={12} xs={12}>
         <Header>
@@ -91,7 +97,9 @@ const Wishlist = () => {
           </StyledButton>
         </BottomWrapper>
       </LeftComponent>
-    </Component>
+    </Component> :<EmptyWishlist/>
+    } </>
+
   );
 };
 

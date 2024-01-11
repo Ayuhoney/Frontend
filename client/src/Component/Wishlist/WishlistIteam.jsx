@@ -5,6 +5,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import { addEllipsis } from '../../utils/util';
 import GroupButton from './GroupButton';
+import { Link } from 'react-router-dom';
+
 
 const Component = styled(Card)`
 
@@ -60,7 +62,9 @@ const WishlistIteam = ({ id, item, removeItemFromWish }) => {
     return (
         <Component>
             <LeftComponent>
+                <Link to="/">
                 <img  alt="img" src={item.url} style={{ height: 110, width: 110 }} />
+                </Link>
                 <GroupButton itemId={item.id} /> 
             </LeftComponent>
             <Box style={{ margin: 20 }}>
