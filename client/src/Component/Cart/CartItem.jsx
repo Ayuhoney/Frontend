@@ -2,9 +2,11 @@
 import { Card, Box, Typography, Button, styled } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
 import { addEllipsis } from '../../utils/util';
 import GroupButton from './GroupButton';
+import { Link } from 'react-router-dom';
+
+
 
 const Component = styled(Card)`
 
@@ -57,10 +59,13 @@ const Remove = styled(Button)(({ theme }) => ({
 const CartItem = ({ id, item, removeItemFromCart }) => {
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
 
+   
     return (
         <Component>
             <LeftComponent>
+                <Link to="/">
                 <img  alt="img" src={item.url} style={{ height: 110, width: 110 }} />
+                </Link>
                 <GroupButton itemId={item.id} /> 
             </LeftComponent>
             <Box style={{ margin: 20 }}>

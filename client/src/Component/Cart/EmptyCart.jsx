@@ -22,8 +22,8 @@ const Image = styled('img')({
 const Additeam = styled(Link)(({ theme }) => ({
     padding: '10px 24px',
     marginTop:30,
-    boxShadow: '0 -2px 10px 0 rgb(0 123 0 / 10%)',
-    border:'3px solid #f0f0f0',
+    border: "0px solid #f0f0f0",
+    boxShadow: "0px 1px 7px 3px rgb(0 123 124/ 21%)",
     textDecoration:'none',
     color:'inherit'
   }));
