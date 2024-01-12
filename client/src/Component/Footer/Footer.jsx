@@ -3,6 +3,7 @@ import './Footer.css'
 import FooterItem from './FooterItem'
 import { about,help,policy,social } from './footerData'
 import { Box } from '@mui/material'
+import IMage from '../../assets/images/payment-methods.svg'
 
 
 const Footer = () => {
@@ -78,7 +79,7 @@ const Footer = () => {
             <a href='/'>Help Center</a>
           </div>
           <h4>© 2007-2023 Flipkart.com</h4>
-          <img alt="IMge" src='https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img alt="IMge"/payment-method_69e7ec.svg'></img>
+          <img alt="IMge"src={IMage}></img>
         </div>
       </div>
   </Box>
