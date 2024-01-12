@@ -1,7 +1,7 @@
 
 import {Typography, Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
-import cart from '../../assets/images/emptyCart.gif'
+import cart from '../../assets/images/buy.webp'
 
 const Component = styled(Box)`
     width: 80%%;
@@ -35,9 +35,9 @@ const EmptyCheckout = () => {
     return (
         <Component>
             <Container>
-                <Image src={imgurl} />
-                <Typography>Your cart is empty!</Typography>&nbsp;&nbsp;&nbsp;<br/>
-                <Additeam to="/" variant="contained" component="span">Add items to it now.</Additeam>
+                <Image src={imgurl}  width='150%'height='150%'/>
+                <Typography>Your Order is empty!</Typography>&nbsp;&nbsp;&nbsp;<br/>
+                <Additeam to="/" variant="contained" component="span">Buy now!</Additeam>
             </Container>
         </Component>
     )

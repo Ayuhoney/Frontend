@@ -43,11 +43,11 @@ const Discount = styled(Typography)`
 `;
 
 
-const totalAmount = (cartItems) => {
+const totalAmount = (checkoutItems) => { 
 
     let totalPrice = 0, totalDiscount = 0;
     
-    cartItems.forEach(item => {
+    checkoutItems.forEach(item => {
         totalPrice += item.price.mrp * item.quantity;
         totalDiscount += (item.price.mrp - item.price.cost) * item.quantity;
     });
@@ -55,16 +55,16 @@ const totalAmount = (cartItems) => {
     return { totalPrice, totalDiscount };
 };
 
-const TotalView = ({ cartItems }) => {
+const TotalView = ({ checkoutItems }) => {
 
     const [price, setPrice] = useState(0);
     const [discount, setDiscount] = useState(0);
 
     useEffect(() => {
-        const { totalPrice, totalDiscount } = totalAmount(cartItems);
+        const { totalPrice, totalDiscount } = totalAmount(checkoutItems);
         setPrice(totalPrice);
         setDiscount(totalDiscount);
-    }, [cartItems]);
+    }, [checkoutItems]);
 
     const adURL = 'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019-07-14.png?q=50';
 
@@ -75,7 +75,7 @@ const TotalView = ({ cartItems }) => {
             </Header>
             <Container>
                 <Typography>
-                    Price ({cartItems?.length} item)
+                    Price ({checkoutItems?.length} item)
                     <Price component="span">₹{price}</Price>
                 </Typography>
                 <Typography>

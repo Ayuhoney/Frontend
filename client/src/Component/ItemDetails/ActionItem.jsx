@@ -2,6 +2,7 @@
 // import { post } from '../../utils/paytm';
 import { addToCart } from "../../redux/actions/cartActions";
 import { AddWishItem } from "../../redux/actions/WishActions";
+import {addToCheckout} from "../../redux/actions/checkoutAction"
 import { ShoppingCart as Cart, FlashOn as Flash } from "@mui/icons-material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
@@ -58,6 +59,7 @@ const ActionItem = ({ product }) => {
   };
 
   const checkout = () => {
+    dispatch(addToCheckout(id, quantity));
     navigate("/checkout");
   };
 

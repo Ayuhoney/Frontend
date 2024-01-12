@@ -56,7 +56,7 @@ const Remove = styled(Button)(({ theme }) => ({
 }));
 
 
-const CheckoutIteam = ({ id, item, removeItemFromCart }) => {
+const CheckoutIteam = ({item, removeItemFromCheckout }) => {
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
 
    
@@ -79,7 +79,7 @@ const CheckoutIteam = ({ id, item, removeItemFromCart }) => {
                     <Discount component="span">{item.price.discount} off</Discount>
                 </Typography>
             
-                <Remove onClick={() => removeItemFromCart(item.id)}>
+                <Remove onClick={() => removeItemFromCheckout(item.id)}>
                 <IconButton  size="large">
                     <DeleteOutlineIcon fontSize="inherit" style={{color:"#2874f0"}}/>
                 </IconButton>

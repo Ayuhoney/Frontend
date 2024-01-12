@@ -4,12 +4,12 @@ import {Box,TextField, Typography, Button, Grid, styled, AppBar } from '@mui/mat
 import { useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../../redux/actions/cartActions';
+import { addToCheckout,removeToCheckout,setDeliveryAddress } from '../../redux/actions/checkoutAction';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 import TotalView from './TotalView';
 import EmptyCart from './EmptyCheckout';
-import CartItem from './CheckoutIteam';
+import CheckoutIteam from './CheckoutIteam';
 import { Link } from 'react-router-dom';
 import {useContext} from 'react';
 import {DataContext} from '../../context/ContextProvider'
@@ -38,14 +38,13 @@ const Header = styled(Box)`
     box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
     border: 1px solid #f0f0f0;
     margin-bottom:2px;
-
-
 `;
 const Login = styled(Box)`
     padding: 10px 24px;
     box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
     border: 1px solid #f0f0f0;
     margin-bottom:2px;
+    display:flex;
 
 `;
 const Delivery = styled(Box)`
@@ -126,24 +125,33 @@ const LoginButton = styled(Button)`
     top:-29px;
 `;
 
+const TitleName = styled(Box)`
+
+    padding: 10px 24px;
+    box-shadow: 0 -2px 10px 0 rgb(0 123 0 / 10%);
+    border: 1px solid #f0f0f0;
+    margin-bottom:2px;
+    text-align: center;
+`;
+
 const Wrapper = styled(Box)(({ theme }) => ({
+
     padding: '10px 35px',
-    display:'grid',
-    flexDirection: 'column',
-    '& >*':{
-        marginTop:'29px'
-    },
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '20px',
+    marginTop: '29px',
+
     [theme.breakpoints.down('lg')]: {
-        marginTop:'29px'
+        marginTop: '29px'
     }
 }));
 
-
-const totalAmount = (cartItems) => {
+const totalAmount = (CheckoutIteam) => {
 
     let totalPrice = 0, totalDiscount = 0;
     
-    cartItems.forEach(item => {
+    CheckoutIteam.forEach(item => {
         totalPrice += item.price.mrp * item.quantity;
         totalDiscount += (item.price.mrp - item.price.cost) * item.quantity;
     });
@@ -151,7 +159,7 @@ const totalAmount = (cartItems) => {
     return { totalPrice, totalDiscount };
 };
 
-const signupInitialValues = {
+const DeliveryAddress = {
     firstname: '',
     lastname: '',
     Address: '',
@@ -167,28 +175,28 @@ export const Checkout = () => {
     const logoURL ="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png";
     const subURL  ="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png";
 
-    const cartDetails = useSelector(state => state.cart);
-    const { cartItems } = cartDetails;
+    const checkoutDetails = useSelector(state => state.checkout);
+    const { checkoutItems } = checkoutDetails;
     const { id } = useParams();
 
     const [price, setPrice] = useState(0);
     const [discount, setDiscount] = useState(0);
 
     useEffect(() => {
-        const { totalPrice, totalDiscount } = totalAmount(cartItems);
+        const { totalPrice, totalDiscount } = totalAmount(checkoutItems);
         setPrice(totalPrice);
         setDiscount(totalDiscount);
-    }, [cartItems]);
+    }, [checkoutItems]);
 
     const dispatch = useDispatch();
     
     useEffect(() => {
-        if(cartItems && id !== cartItems.id)   
-            dispatch(addToCart(id));
-    }, [dispatch, cartItems, id]);
+        if(checkoutItems && id !== checkoutItems.id)   
+            dispatch(addToCheckout(id));
+    }, [dispatch, checkoutItems, id]);
 
-    const removeItemFromCart = (id) => {
-        dispatch(removeFromCart(id));
+    const removeItemFromCheckout = (id) => {
+        dispatch(removeToCheckout(id));
     }
 
     const buyNow = async () => {
@@ -209,11 +217,14 @@ export const Checkout = () => {
           setExpanded(!expanded);
         };
 
-        const [ signup, setSignup ] = useState(signupInitialValues);
+        const [ signup, setSignup ] = useState(DeliveryAddress);
         const onInputChange = (e) => {
             setSignup({ ...signup, [e.target.name]: e.target.value });
         }
-        console.log(signup)
+
+        const submitAddress = () => {
+            dispatch(setDeliveryAddress(signup));
+          };
 
     return (
         <>
@@ -223,7 +234,7 @@ export const Checkout = () => {
           <Box style={{ display: "flex" }}>
             <SUbHeading>
               Explore&nbsp;
-              <Box component="span" style={{ color: "#FFE500" }}>
+              <Box component="Box" style={{ color: "#FFE500" }}>
                 Plus
               </Box>
             </SUbHeading>
@@ -232,52 +243,52 @@ export const Checkout = () => {
         </Components>
         </StyledHeader>
 
-        { cartItems.length ? 
+        { checkoutItems.length ? 
             <Component container>
                 <LeftComponent item lg={9} md={9} sm={12} xs={12}>
                     
                     {/* login */}
-                    <Login>
-                        <Typography style={{ fontWeight: 600, fontSize: 18 }}>
+                    <Login >
+                        <Typography style={{ display:'flex',fontWeight: 600, fontSize: 18 }}>
                             Login : &nbsp; {account}
-                            <span>
+                            <Box>
                             {account && <CheckCircleOutlinedIcon color='success' />}
-                            </span>
+                            </Box>
                         </Typography>
                     </Login>
 
                     {/* Address */}
                     <Delivery>
-                        <Typography style={{fontWeight: 600, fontSize: 18}}>Delivery Address </Typography>
+                        <Typography style={{ display:'flex',fontWeight: 600, fontSize: 18}}>Delivery Address </Typography>
                         <LoginButton  variant="contained" onClick={handleButtonClick}>
                             {expanded ? 'Collapse' : 'Expand'}
                             </LoginButton>
                             {expanded && (
 
                             <Box style={{ marginTop: '10px', border: '1px solid #ddd', padding: '10px' }}>
-                            
+                             
+                        <TitleName><strong>Enter Delivery Address :</strong> </TitleName>
                         <Wrapper>  
-
-                            <span><strong>Enter Delivery Address :</strong> </span>
-  
-                            <TextField style={{marginLeft:'-30%'}} id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='firstname' label='Enter Firstname' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='Address' label='Enter Adress' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='pincode' label='Enter Pincode' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='state' label='Enter State' />
-                            <TextField id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='country' label='Enter Country' />
-                            <Button  style={{ marginTop:'6%',marginLeft:'5%', width:130}} variant="contained" >Submit</Button>
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='firstname' label='Enter Firstname' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='lastname' label='Enter Lastname' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='Address' label='Enter Adress' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='pincode' label='Enter Pincode' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='state' label='Enter State' />
+                            <TextField required id="outlined-password-input" autoComplete="current-password" onChange={(e) => onInputChange(e)} name='country' label='Enter Country' />
+                            <LoginButton  onClick={submitAddress} style={{ marginTop:'14%',marginLeft:'5%', width:130}} variant="contained" >Submit</LoginButton>
 
                         </Wrapper>
                         </Box>)}
                     </Delivery>
                     {/* order Summary */}
                     <Header>
-                        <Typography style={{fontWeight: 600, fontSize: 18}}>Order Summary&nbsp;({cartItems?.length})</Typography>
+                        <Typography style={{fontWeight: 600, fontSize: 18}}>Order Summary&nbsp;({checkoutItems?.length})</Typography>
                     </Header>
-                        {   cartItems.map((item,idx) => (
-                                <CartItem  item={item} key={idx} removeItemFromCart={removeItemFromCart}/>
+                        {   checkoutItems.map((item,idx) => (
+                                <CheckoutIteam  item={item} key={idx} removeItemFromCheckout={removeItemFromCheckout}/>
                             ))
                         }
                     <BottomWrapper>
@@ -292,7 +303,7 @@ export const Checkout = () => {
                     </BottomWrapper>
                 </LeftComponent>
                 <Grid item lg={3} md={3} sm={12} xs={12}>
-                    <TotalView cartItems={cartItems} />
+                    <TotalView checkoutItems={checkoutItems} />
                 </Grid>
             </Component> : <EmptyCart />
         }

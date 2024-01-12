@@ -2,7 +2,6 @@ import React from 'react'
 import './Footer.css'
 import FooterItem from './FooterItem'
 import { about,help,policy,social } from './footerData'
-import { Box } from '@mui/material'
 import IMage from '../../assets/images/payment-methods.svg'
 
 
@@ -10,7 +9,7 @@ const Footer = () => {
 
   return (
 
-    <Box styled={{marginTop:'22%'}}>
+    <footer styled={{marginTop:'22%'}}>
       <div className='Footer'>
         <div className='content'>
           <div className='quick-links'>
@@ -82,7 +81,7 @@ const Footer = () => {
           <img alt="IMge"src={IMage}></img>
         </div>
       </div>
-  </Box>
+  </footer>
   )
 }
 

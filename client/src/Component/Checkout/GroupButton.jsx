@@ -2,7 +2,7 @@
 import React from 'react';
 import { ButtonGroup, Button, styled } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { incrementQuantity, decrementQuantity } from '../../redux/actions/cartActions';
+import { incrementQuantity, decrementQuantity } from '../../redux/actions/checkoutAction';
 
 const Component = styled(ButtonGroup)`
     margin-top: 30px;
@@ -10,21 +10,23 @@ const Component = styled(ButtonGroup)`
 `;
 
 const GroupButton = ({ itemId }) => {
-    const cartDetails = useSelector(state => state.cart);
-    const { cartItems } = cartDetails;
 
-    const selectedItem = cartItems.find(item => item.id === itemId);
+    const checkoutDetails = useSelector(state => state.checkout);
+    console.log(checkoutDetails);
+    const { checkoutItems } = checkoutDetails;
+
+    const selectedItem = checkoutItems.find(item => item.id === itemId);
 
     const dispatch = useDispatch();
 
     const handleIncrement = () => {
         dispatch(incrementQuantity(itemId));
-        updateAllItemCosts(cartItems, dispatch);
+        updateAllItemCosts(checkoutItems, dispatch);
     };
 
     const handleDecrement = () => {
         dispatch(decrementQuantity(itemId));
-        updateAllItemCosts(cartItems, dispatch);
+        updateAllItemCosts(checkoutItems, dispatch);
     };
 
     const updateAllItemCosts = (items, dispatch) => {
