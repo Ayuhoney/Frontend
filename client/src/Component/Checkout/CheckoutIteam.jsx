@@ -56,7 +56,7 @@ const Remove = styled(Button)(({ theme }) => ({
 }));
 
 
-const CartItem = ({ id, item, removeItemFromCart }) => {
+const CheckoutIteam = ({ id, item, removeItemFromCart }) => {
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
 
    
@@ -89,4 +89,4 @@ const CartItem = ({ id, item, removeItemFromCart }) => {
     );
 }
 
-export default CartItem;
+export default CheckoutIteam;

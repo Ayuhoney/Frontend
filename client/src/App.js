@@ -9,6 +9,8 @@ import DetailView from './Component/ItemDetails/DetailView'
 import Cart from './Component/Cart/Cart';
 import Footer from './Component/Footer/Footer.jsx';
 import Wishlist from './Component/Wishlist/Wishlist.jsx';
+import { Checkout } from './Component/Checkout/Checkout.jsx';
+
 
 
 function App() {
@@ -23,7 +25,8 @@ function App() {
               <Route path= '/product/:id' element={<DetailView />} />
               <Route path= '/cart' element={<Cart/>} />
               <Route path= '/wishlist' element={<Wishlist/>} />
-            </Routes>
+              <Route path= '/checkout' element={<Checkout/>} />
+        </Routes>
         </Box>
       </BrowserRouter>
     </DataProvider>
@@ -31,5 +34,4 @@ function App() {
     </>
   );
 }
-
 export default App;

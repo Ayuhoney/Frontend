@@ -62,7 +62,7 @@ const WishlistIteam = ({ id, item, removeItemFromWish }) => {
     return (
         <Component>
             <LeftComponent>
-                <Link to="/">
+                <Link to={ `/product/${item.id}`}>
                 <img  alt="img" src={item.url} style={{ height: 110, width: 110 }} />
                 </Link>
                 <GroupButton itemId={item.id} /> 

@@ -210,7 +210,6 @@ export const LoginDialog = ({ open, setopen}) => {
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
                             <TextField variant="standard" onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' />
                             <LoginButton variant="contained" onClick={() => signupUser()} >Continue</LoginButton>
-                           
                         </Wrapper>
                     }
                 </Box>

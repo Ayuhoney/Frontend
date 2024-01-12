@@ -57,6 +57,11 @@ const ActionItem = ({ product }) => {
     navigate("/cart");
   };
 
+  const checkout = () => {
+    navigate("/checkout");
+  };
+
+
   const addItemToWishlist = () => {
     dispatch(AddWishItem(id, quantity));
     navigate("/wishlist");
@@ -92,7 +97,7 @@ const ActionItem = ({ product }) => {
       >
         <Cart /> Add to Cart
       </StyledButton>
-      <StyledButton style={{ background: "#fb641b" }} variant="contained">
+      <StyledButton onClick={() => checkout()} style={{ background: "#fb641b" }} variant="contained">
         <Flash /> Buy Now
       </StyledButton>
     </LeftContainer>

@@ -4,7 +4,7 @@ const FooterItem = ({items}) => {
   return (
     <>
         {items.map((e,index)=>(
-            <a href='#' key={index}>{e}</a>
+            <a href='/' key={index}>{e}</a>
         ))}
     </>
   )
